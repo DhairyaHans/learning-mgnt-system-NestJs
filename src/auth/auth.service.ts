@@ -14,7 +14,7 @@ export class AuthService {
 
     // Logic to register a user
     /** Steps might include:
-            1. Check if email already exists
+            1. Check if email already exists ✅
             2. Hash the password ✅
             3. Store the user in the database ✅
             4. Generate JWT token
