@@ -1,10 +1,11 @@
-import { BadRequestException, ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { RegisterUserDto } from 'src/auth/dto/registerUser.dto';
 import { User } from './schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { LoginUserDto } from './dto/loginUser.dto';
 import bcrypt from 'bcrypt';
+import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class UserService {
@@ -59,5 +60,9 @@ export class UserService {
             console.log("error - ", err)
             throw err
         }
+    }
+
+    async getUserById(userId: string){
+        return await this.userModel.findById(userId)
     }
 }
