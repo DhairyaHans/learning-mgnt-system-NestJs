@@ -30,7 +30,7 @@ export class AuthService {
       password: hash,
     });
 
-    const payload = {sub: user._id}
+    const payload = {sub: user._id, role: user.role}
     const jwtToken = await this.jwtService.signAsync(payload)
 
     return {'access_token': jwtToken};
@@ -45,7 +45,7 @@ export class AuthService {
     */
     const user = await this.userService.verifyUserCredentials(loginUserDto)
 
-    const payload = {sub: user._id}
+    const payload = {sub: user._id, role: user.role}
     const jwtToken = await this.jwtService.signAsync(payload)
     
     return {"access_token": jwtToken}
